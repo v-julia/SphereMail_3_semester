@@ -31,33 +31,33 @@ def main():
     use_features_in_tree = (int)(args.features_percent * number_of_features)
 
     # Create the random forest classifier
-    print "Build random forest classifier..."
+    print("Build random forest classifier...")
     forest = RandomForestClassifier(n_estimators = args.trees, max_features=use_features_in_tree)
     forest = forest.fit(train_data[0::, 1::], train_data[0::, 0])
     prediction_randomforest = forest.predict(test_data[0::, 1::])
 
     #Create adaboost classifier
-    print "Build adaboost classifier..."
+    print("Build adaboost classifier...")
     adaboost_classifier = AdaBoostClassifier(n_estimators=args.trees)
     adaboost_classifier.fit(train_data[0::, 1::], train_data[0::, 0])
     prediction_adaboost = adaboost_classifier.predict(test_data[0::, 1::])
 
     #Create gbm classifier
-    print "Build gbm classifier..."
+    print("Build gbm classifier...")
     gbm_classifier = GradientBoostingClassifier(n_estimators=args.trees)
     gbm_classifier.fit(train_data[0::, 1::], train_data[0::, 0])
     prediction_gbm = gbm_classifier.predict(test_data[0::, 1::])
 
     #Create svm classifier
-    print "Build svm classifier..."
+    print("Build svm classifier...")
     svm_classifier = svm.SVC()
     svm_classifier.fit(train_data[0::, 1::], train_data[0::, 0])
     prediction_svm = svm_classifier.predict(test_data[0::, 1::])
 
-    print classification_report(test_data[0::, 0], prediction_randomforest, 'Random Forest')
-    print classification_report(test_data[0::, 0], prediction_adaboost, 'AdaBoost')
-    print classification_report(test_data[0::, 0], prediction_gbm, 'Gradient Boosting Machine')
-    print classification_report(test_data[0::, 0], prediction_svm, 'SVM')
+    print(classification_report(test_data[0::, 0], prediction_randomforest, 'Random Forest'))
+    print(classification_report(test_data[0::, 0], prediction_adaboost, 'AdaBoost'))
+    print(classification_report(test_data[0::, 0], prediction_gbm, 'Gradient Boosting Machine'))
+    print(classification_report(test_data[0::, 0], prediction_svm, 'SVM'))
 
 
 def visualize_classes(total_data, response):
@@ -103,6 +103,7 @@ def visualize_data(total_data, train_size, test_size):
     pl.plot(projection[train_size:train_size+test_size, 0], projection[train_size:train_size+test_size, 1],
             'o', markersize=7, color='red', alpha=0.5, label='Test')
     pl.title('Spam data')
+    pl.legend(loc='best')
     pl.show()
 
 
@@ -115,7 +116,7 @@ def classification_report(y_true, y_pred, alg_name=None):
     '''
 
     if (alg_name != None):
-        print alg_name + " :"
+        print(alg_name + " :")
 
     last_line_heading = 'avg / total'
     final_line_heading = 'final score'
