@@ -80,7 +80,7 @@ def visualize_classes(total_data, response):
 
     pl.plot(projection[spam_class, 0], projection[spam_class, 1],
             'o', markersize=7, color='red', alpha=0.5, label='Spam')
-
+    pl.legend(loc='best')
     pl.title('Spam data')
     pl.show()
 
