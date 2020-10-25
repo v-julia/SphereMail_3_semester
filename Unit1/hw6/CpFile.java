@@ -1,0 +1,29 @@
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FileUtil;
+
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+
+
+public class CpFile {
+    public static void main(String[] args) throws Exception{
+        if (args.length != 2){
+            System.out.println("2 arguments are required");
+            return;
+        }
+        Path path1 = new Path(args[0]);
+        Path path2 = new Path(args[1]);
+
+        Configuration conf = new Configuration();
+
+        FileSystem fs1 = path1.getFileSystem(conf);
+        FileSystem fs2 = path2.getFileSystem(conf);
+
+        FileUtil.copy(fs1, path1, fs2, path2, false, conf);
+    }
+}
