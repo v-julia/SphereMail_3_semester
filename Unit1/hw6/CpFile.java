@@ -4,12 +4,6 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.FileUtil;
 
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-
-
 public class CpFile {
     public static void main(String[] args) throws Exception{
         if (args.length != 2){
